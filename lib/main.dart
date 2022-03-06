@@ -19,19 +19,32 @@ class AlanSpeech extends StatefulWidget {
 
 class _AlanSpeechState extends State<AlanSpeech> {
 
+  //
   _MyHomePageState() {
-    AlanVoice.addButton("92326eb5570070aca38065b8253b53da2e956eca572e1d8b807a3e2338fdd0dc/stage",
+
+    // Adds alan voice button using your API_KEY instance and specifies
+    // the position of our button
+
+    AlanVoice.addButton(' YOUR API_KEY goes here ',
         buttonAlign: AlanVoice.BUTTON_ALIGN_LEFT
     );
 
+    // sets a command to be performed on speech match
+
     AlanVoice.onCommand.add((command) async {
       if(command.data['command'] == 'youtube' ){
+
+        // Launches the application when a match occurs
+
         await LaunchApp.openApp(
           androidPackageName: 'com.google.android.youtube',
           appStoreLink: 'https://play.google.com/store/apps/details?id=com.google.android.youtube&hl=en&gl=US',
           // openStore: false
         );
       }
+
+      // debugs the output to the console
+
       debugPrint("got new command ${command}");
       debugPrint("got new command ${command.data['command']}");
     });
@@ -39,6 +52,7 @@ class _AlanSpeechState extends State<AlanSpeech> {
 
   @override
   initState() {
+    // Initializes alan voice button to listen to speech
     _MyHomePageState();
   }
 
